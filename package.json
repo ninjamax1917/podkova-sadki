@@ -1,0 +1,22 @@
+{
+  "name": "podkova-sadki",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+  "dev:lan": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview",
+  "css:build": "tailwindcss -i ./src/style.css -o ./public/style.css --minify",
+  "css:watch": "tailwindcss -i ./src/style.css -o ./public/style.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.12",
+    "vite": "^7.1.2"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.12",
+    "tailwindcss": "^4.1.12"
+  }
+}
