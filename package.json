@@ -5,11 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-  "dev:lan": "vite --host",
+    "dev:lan": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
-  "css:build": "tailwindcss -i ./src/style.css -o ./public/style.css --minify",
-  "css:watch": "tailwindcss -i ./src/style.css -o ./public/style.css --watch"
+    "css:build": "tailwindcss -i ./src/style.css -o ./public/style.css --minify",
+    "css:watch": "tailwindcss -i ./src/style.css -o ./public/style.css --watch"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.12",
@@ -18,5 +18,17 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.12",
     "tailwindcss": "^4.1.12"
-  }
+  },
+  "description": "Простой одностраничный landing page. HTML + CSS + JS. Для стилей использовался Tailwind CSS. Для сборки фронтенда использовался Vite.",
+  "main": "vite.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ninjamax1917/podkova-sadki.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ninjamax1917/podkova-sadki/issues"
+  },
+  "homepage": "https://github.com/ninjamax1917/podkova-sadki#readme"
 }

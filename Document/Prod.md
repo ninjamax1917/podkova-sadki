@@ -52,3 +52,6 @@ Nginx перезагружать не нужно — это статика.
 Доступ к dev-серверу с телефона/другого ПК:
 npm run dev:lan
 Откройте Network URL, который покажет Vite (например, http://192.168.x.y:5173).
+
+
+scp -r /home/ninja/sites/podkova-sadki/podkova-sadki/* ninjamax1917@10.10.0.101:~/sites/podkova-sadki/
