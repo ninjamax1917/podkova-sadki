@@ -54,4 +54,7 @@ npm run dev:lan
 Откройте Network URL, который покажет Vite (например, http://192.168.x.y:5173).
 
 
-scp -r /home/ninja/sites/podkova-sadki/podkova-sadki/* ninjamax1917@10.10.0.101:~/sites/podkova-sadki/
+scp -r /home/ninja/sites/podkova-sadki/dist ninjamax1917@10.10.0.101:~/sites/podkova-sadki/
+
+Делаем превьюху
+ffmpeg -i /home/ninja/sites/podkova-sadki/public/media/preview.mp4 -vf "select=eq(n\,0)" -q:v 1 /home/ninja/sites/podkova-sadki/public/media/preview-frame.jpg

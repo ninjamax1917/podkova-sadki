@@ -20,6 +20,11 @@
           transform: none;
           transform-origin: center center;
         }
+  /* Плавный кроссфейд постер -> видео */
+  .hero-video { opacity: 0; transition: opacity .35s ease; }
+  .hero-video.is-ready { opacity: 1; }
+  .hero-poster { opacity: 1; transition: opacity .35s ease; }
+  .hero-poster.is-hidden { opacity: 0; }
     </style>
     <title>Подкова — база отдыха в хуторе Садки</title>
   </head>
@@ -45,12 +50,13 @@
     <!-- Герой с видео -->
   <section class="relative">
   <div class="relative h-[65vh] sm:h-[72vh] lg:h-[92vh] xl:h-screen overflow-hidden hero">
-  <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="/media/preview.jpg">
-          <!-- Сначала webm для современных браузеров, затем mp4 как универсальный фолбэк -->
-          <source src="/media/preview.webm" type="video/webm" />
+  <!-- Постер (под видео) -->
+  <img class="hero-poster absolute inset-0 w-full h-full object-cover z-0" src="/media/preview.jpg" alt="" aria-hidden="true" />
+  <!-- Видео (одно для всех устройств) -->
+  <video class="hero-video absolute inset-0 w-full h-full object-cover z-10" muted loop playsinline webkit-playsinline preload="auto" poster="/media/preview.jpg">
           <source src="/media/preview.mp4" type="video/mp4" />
-           Ваш браузер не поддерживает воспроизведение видео.
-         </video>
+          Ваш браузер не поддерживает воспроизведение видео.
+        </video>
         <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-white/0"></div>
   <div class="relative z-10 h-full flex items-end sm:items-center lg:items-end pb-6 sm:pb-0 lg:pb-0">
           <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">

@@ -4,36 +4,84 @@ import { initTelegramShare } from './js/telegram.js'
 import { initMap } from './js/map.js'
 
 function initHeroVideoAutoplay() {
-  const video = document.querySelector('video[autoplay][muted]')
-  if (!video) return
+  const videos = Array.from(document.querySelectorAll('video.hero-video'))
+  const posters = Array.from(document.querySelectorAll('.hero-poster'))
+  if (!videos.length) return
 
-  // Ensure proper flags for mobile autoplay
-  try {
-    video.muted = true
-    video.playsInline = true
-    video.setAttribute('playsinline', '')
-    video.setAttribute('webkit-playsinline', '')
-  } catch {}
-
-  const tryPlay = () => {
-    const p = video.play()
-    if (p && typeof p.then === 'function') {
-      p.catch(() => {/* swallow – will retry on user gesture */})
-    }
+  const ensureFlags = (el) => {
+    try {
+      el.muted = true
+      el.playsInline = true
+      el.setAttribute('playsinline', '')
+      el.setAttribute('webkit-playsinline', '')
+    } catch {}
   }
 
-  // Try once on load and when visible
-  tryPlay()
-  const io = ('IntersectionObserver' in window)
-    ? new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) tryPlay() })
-      })
-    : null
-  if (io) io.observe(video)
+  const isVisible = (el) => {
+    // Rely on CSS display none for responsive classes
+    return el.offsetParent !== null || getComputedStyle(el).display !== 'none'
+  }
 
-  // Fallback: attempt on first user gesture
+  const playEl = (el) => {
+    if (!el) return
+    ensureFlags(el)
+    const p = el.play()
+    if (p && typeof p.then === 'function') p.catch(() => {})
+  }
+
+  const pauseEl = (el) => { try { el.pause() } catch {} }
+  
+  const findPosterFor = (videoEl) => {
+    // Предпочтительно ближайший предыдущий сосед .hero-poster
+    let p = videoEl.previousElementSibling
+    while (p && !p.classList?.contains('hero-poster')) p = p.previousElementSibling
+    if (p && p.classList?.contains('hero-poster')) return p
+    // Иначе пытаемся сопоставить по breakpoint-классам
+    return posters.find(pp => (
+      (videoEl.classList.contains('sm:hidden') && pp.classList.contains('sm:hidden')) ||
+      (videoEl.classList.contains('sm:block') && pp.classList.contains('sm:block'))
+    )) || null
+  }
+
+  let playTimeout
+  const pickAndPlay = () => {
+    const target = videos.find(isVisible) || videos[0]
+    // Остановить остальные и сбросить их состояние
+    videos.forEach(v => { if (v !== target) { pauseEl(v); v.classList.remove('is-ready') } })
+    // Показать все постеры (снимет скрытие с нецелевых)
+    posters.forEach(p => p.classList.remove('is-hidden'))
+
+    const posterEl = findPosterFor(target)
+
+    const start = () => {
+      ensureFlags(target)
+      // Кроссфейд при готовности
+      const onReady = () => {
+        target.classList.add('is-ready')
+        if (posterEl) posterEl.classList.add('is-hidden')
+      }
+      target.addEventListener('playing', onReady, { once: true })
+      target.addEventListener('canplay', onReady, { once: true })
+      playEl(target)
+    }
+
+    clearTimeout(playTimeout)
+  // Задержка 1 секунда для показа превью перед стартом
+  playTimeout = setTimeout(start, 1000)
+  }
+
+  // Initial attempt after load/visibility
+  pickAndPlay()
+  // Retry on resize (switch mobile/desktop)
+  let resizeT
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeT)
+    resizeT = setTimeout(pickAndPlay, 200)
+  })
+
+  // First user gesture fallback
   const once = () => {
-    tryPlay()
+    pickAndPlay()
     window.removeEventListener('pointerdown', once, true)
     window.removeEventListener('keydown', once, true)
     window.removeEventListener('touchstart', once, true)
@@ -44,9 +92,8 @@ function initHeroVideoAutoplay() {
   window.addEventListener('touchstart', once, true)
   window.addEventListener('scroll', once, true)
 
-  // Resume after tab visibility changes
   document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) tryPlay()
+    if (!document.hidden) pickAndPlay()
   })
 }
 
