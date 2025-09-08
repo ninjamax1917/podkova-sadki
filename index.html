@@ -623,6 +623,52 @@ l-124 14 1 55 c2 77 33 380 39 391 7 10 256 12 293 3z m-7696 -1838 c24 -23
       </div>
     </section>
 
+    <!-- Секция с яндекс картой -->
+    <section id="map" class="py-10 scroll-mt-24">
+      <div class="mx-auto max-w-7xl px-1 sm:px-6 lg:px-8">
+        <div class="rounded-2xl p-6 sm:p-10">
+          <h1
+            class="text-lg sm:text-lg font-bold text-slate-900 text-center relative inline-block"
+          >
+            КАРТА
+
+            <span class="block w-full mt-1 text-grey-700">
+              <svg
+                height="8"
+                width="105"
+                viewBox="0 0 105 8"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 5 Q 9.5 0, 19 5 T 38 5 T 57 5 T 76 5 T 95 5 T 114 5 T 133 5 T 152 5 T 171 5 T 190 5 T 209 5 T 227 5"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  fill="none"
+                />
+              </svg>
+            </span>
+          </h1>
+
+          <div class="mt-8">
+            <div id="yandexMap" class="bg-slate-100 grid place-items-center">
+              <div class="text-slate-500 text-sm py-10">Загрузка карты…</div>
+            </div>
+            <div class="mt-10 flex justify-start">
+              <a
+                href="https://yandex.ru/maps/?ll=38.111089%2C45.946525&pt=38.111089%2C45.946525&z=17"
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center justify-center rounded-4xl bg-emerald-600 text-white px-5 py-4 text-sm font-bold shadow-soft hover:bg-emerald-700"
+              >
+                ПОСТРОИТЬ МАРШРУТ
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <footer class="border-t border-slate-200 py-8">
       <div
         class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-600"
@@ -664,7 +710,6 @@ l-124 14 1 55 c2 77 33 380 39 391 7 10 256 12 293 3z m-7696 -1838 c24 -23
         />
       </svg>
     </button>
-
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="/critical.css" />
     <script src="/early-restore.js"></script>
     <title>Подкова — база отдыха в хуторе Садки</title>
-    <script type="module" crossorigin src="/assets/index-ByRYzw7G.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-C7E1i481.css">
+    <script type="module" crossorigin src="/assets/index-BRPmdZ4A.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CeuNTUf3.css">
   </head>
 
   <body class="min-h-screen bg-white text-slate-800">
@@ -560,8 +560,8 @@ l-124 14 1 55 c2 77 33 380 39 391 7 10 256 12 293 3z m-7696 -1838 c24 -23
             <span class="block w-full mt-1 text-grey-700">
               <svg
                 height="8"
-                width="227"
-                viewBox="0 0 227 8"
+                width="90.8"
+                viewBox="0 0 90.8 8"
                 fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -574,12 +574,19 @@ l-124 14 1 55 c2 77 33 380 39 391 7 10 256 12 293 3z m-7696 -1838 c24 -23
               </svg>
             </span>
           </h1>
+          <h2 class="mt-8 font-semibold text-xl text-slate-900">
+            ПОСМОТРИТЕ ВИДЕОРОЛИК О НАШЕЙ БАЗЕ
+          </h2>
 
           <div class="mt-8">
             <div
               class="mx-auto max-w-xl sm:max-w-2xl md:max-w-3xl rounded-xl overflow-hidden shadow-soft bg-white"
             >
-              <div class="w-full relative" style="aspect-ratio: 16 / 9" data-video-container>
+              <div
+                class="w-full relative"
+                style="aspect-ratio: 16 / 9"
+                data-video-container
+              >
                 <video
                   class="w-full h-full block object-cover bg-black"
                   controls
@@ -612,6 +619,52 @@ l-124 14 1 55 c2 77 33 380 39 391 7 10 256 12 293 3z m-7696 -1838 c24 -23
                   </span>
                 </button>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Секция с яндекс картой -->
+    <section id="map" class="py-10 scroll-mt-24">
+      <div class="mx-auto max-w-7xl px-1 sm:px-6 lg:px-8">
+        <div class="rounded-2xl p-6 sm:p-10">
+          <h1
+            class="text-lg sm:text-lg font-bold text-slate-900 text-center relative inline-block"
+          >
+            КАРТА
+
+            <span class="block w-full mt-1 text-grey-700">
+              <svg
+                height="8"
+                width="105"
+                viewBox="0 0 105 8"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 5 Q 9.5 0, 19 5 T 38 5 T 57 5 T 76 5 T 95 5 T 114 5 T 133 5 T 152 5 T 171 5 T 190 5 T 209 5 T 227 5"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  fill="none"
+                />
+              </svg>
+            </span>
+          </h1>
+
+          <div class="mt-8">
+            <div id="yandexMap" class="bg-slate-100 grid place-items-center">
+              <div class="text-slate-500 text-sm py-10">Загрузка карты…</div>
+            </div>
+            <div class="mt-4 flex justify-start">
+              <a
+                href="https://yandex.ru/maps/?ll=38.111089%2C45.946525&pt=38.111089%2C45.946525&z=17"
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center justify-center rounded-lg bg-emerald-600 text-white px-4 py-2 text-sm font-semibold shadow-soft hover:bg-emerald-700"
+              >
+                Построить маршрут в Яндекс Картах
+              </a>
             </div>
           </div>
         </div>
@@ -659,6 +712,5 @@ l-124 14 1 55 c2 77 33 380 39 391 7 10 256 12 293 3z m-7696 -1838 c24 -23
         />
       </svg>
     </button>
-
   </body>
 </html>
