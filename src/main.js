@@ -3,6 +3,17 @@ import { initSiteUI } from './js/site.js'
 import { initTelegramShare } from './js/telegram.js'
 import { initMap } from './js/map.js'
 
+function syncHeaderHeightVar() {
+  const set = () => {
+    const header = document.querySelector('header')
+    const h = header ? Math.ceil(header.getBoundingClientRect().height) : 64
+    document.documentElement.style.setProperty('--header-h', h + 'px')
+  }
+  set()
+  window.addEventListener('resize', () => { requestAnimationFrame(set) })
+  window.addEventListener('pageshow', set)
+}
+
 function initHeroVideoAutoplay() {
   const videos = Array.from(document.querySelectorAll('video.hero-video'))
   const posters = Array.from(document.querySelectorAll('.hero-poster'))
@@ -97,9 +108,60 @@ function initHeroVideoAutoplay() {
   })
 }
 
+function initInlineVideoOverlay() {
+  const containers = document.querySelectorAll('[data-video-container]')
+  containers.forEach((wrap) => {
+    const video = wrap.querySelector('video')
+    const overlay = wrap.querySelector('[data-video-overlay]')
+    if (!video || !overlay) return
+
+    const show = () => overlay.classList.remove('hidden')
+    const hide = () => overlay.classList.add('hidden')
+
+    // Изначально показываем кнопку Play
+    show()
+
+    overlay.addEventListener('click', () => {
+      hide()
+      // включаем воспроизведение
+      const p = video.play()
+      if (p && typeof p.then === 'function') {
+        p.catch(() => show())
+      }
+    })
+
+    video.addEventListener('play', hide)
+    video.addEventListener('playing', hide)
+    video.addEventListener('pause', show)
+    video.addEventListener('ended', show)
+  })
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  syncHeaderHeightVar()
   initSiteUI()
   initTelegramShare()
   initMap()
   initHeroVideoAutoplay()
+  initInlineVideoOverlay()
 })
+
+// Toggle compact header on scroll
+;(function initHeaderCompact() {
+  const header = document.querySelector('header')
+  if (!header) return
+  const threshold = 60
+  let compact = false
+  const apply = (on) => {
+    compact = !!on
+    header.classList.toggle('header--compact', compact)
+    // after class change, update header height var so hero offset stays correct
+    requestAnimationFrame(syncHeaderHeightVar)
+  }
+  const onScroll = () => {
+    const should = window.scrollY > threshold
+    if (should !== compact) apply(should)
+  }
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onScroll()
+})()

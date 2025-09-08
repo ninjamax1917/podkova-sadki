@@ -16,7 +16,20 @@ body {
 }
 
 /* Плавная прокрутка по якорям */
-html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--header-h, 4rem); }
+
+/* Header variants */
+.header { transition: background-color .2s, box-shadow .2s, height .2s, padding .2s; }
+.header--compact { background-color: rgba(255,255,255,.95); backdrop-filter: blur(6px); box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+.header__inner { transition: padding .2s; }
+.header--compact .header__inner { padding-block: .25rem; }
+.header__brand { display: flex; }
+.header__compact { display: none; }
+.header.header--compact .header__brand { display: none; }
+.header.header--compact .header__compact { display: flex; }
+
+/* Utility to offset hero below header */
+.mt-header { margin-top: calc(var(--header-h) + var(--header-gap, .5rem)); }
 
 /* Утилиты (пригодятся для видео-оверлея) */
 .backdrop-blur-soft { backdrop-filter: blur(2px); }

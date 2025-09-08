@@ -1,73 +1,353 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="База отдыха Подкова — хутор Садки, Приморско-Ахтарский район, выход к каналу, рядом лиман Карлык. Отдых на воде, рыбалка, домики, мангальные зоны." />
-     <!-- Критический CSS для стабильной вёрстки до загрузки Tailwind (исключаем дергание) -->
-    <style>
-      :root { --header-h: 4rem; }
-      html { scroll-padding-top: var(--header-h); }
-      body { padding-top: var(--header-h); }
-  /* Стабильная высота героя до загрузки Tailwind */
-        .hero { height: 60vh; }
-  @media (min-width: 640px) { .hero { height: 72vh; } }
-  @media (min-width: 1024px) { .hero { height: 92vh; } }
-        /* Сброс зума у видео героя */
-        .hero > video {
-          object-fit: cover;
-          transform: none;
-          transform-origin: center center;
-        }
-  /* Плавный кроссфейд постер -> видео */
-  .hero-video { opacity: 0; transition: opacity .35s ease; }
-  .hero-video.is-ready { opacity: 1; }
-  .hero-poster { opacity: 1; transition: opacity .35s ease; }
-  .hero-poster.is-hidden { opacity: 0; }
-    </style>
+    <meta
+      name="description"
+      content="База отдыха Подкова — хутор Садки, Приморско-Ахтарский район, выход к каналу, рядом лиман Карлык. Отдых на воде, рыбалка, домики, мангальные зоны."
+    />
+    <link rel="stylesheet" href="/critical.css" />
+    <script src="/early-restore.js"></script>
     <title>Подкова — база отдыха в хуторе Садки</title>
-    <script type="module" crossorigin src="/assets/index-DsLtQsxe.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-yzhAczSx.css">
+    <script type="module" crossorigin src="/assets/index-ByRYzw7G.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-C7E1i481.css">
   </head>
-  <body class="min-h-screen bg-white text-slate-800 pt-16">
-    <!-- Навбар -->
-  <header class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <a href="#" class="flex items-center gap-2 font-semibold text-slate-900">
-          <span class="rounded-full bg-emerald-500 text-white w-8 h-8 grid place-items-center font-bold">П</span>
-          <span>Подкова</span>
-        </a>
-        <nav class="hidden md:flex gap-6 text-sm">
-          <a href="#about" class="hover:text-emerald-600">О базе</a>
-          <a href="#accomodation" class="hover:text-emerald-600">Размещение</a>
-          <a href="#activities" class="hover:text-emerald-600">Активности</a>
-          <a href="#location" class="hover:text-emerald-600">Локация</a>
-          <a href="#contacts" class="hover:text-emerald-600">Контакты</a>
-        </nav>
-        <a href="#contacts" class="inline-flex items-center rounded-md bg-emerald-600 px-4 py-2 text-white text-sm font-medium shadow-soft hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">Забронировать</a>
+
+  <body class="min-h-screen bg-white text-slate-800">
+    <header class="header fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur">
+      <div
+        class="header__inner mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 min-h-12 flex flex-col items-center justify-center py-2 w-full"
+      >
+        <!-- Вариант 1: Бренд (по умолчанию) -->
+        <div class="header__brand flex flex-col items-center justify-center">
+          <a
+            href="#"
+            class="flex items-center gap-2 font-semibold text-2xl text-slate-900"
+          >
+            <span
+              class="font-bold"
+              style="font-family: 'Cormorant Garamond', serif"
+              >ПОДКОВА</span
+            >
+            <span class="rotate-180 w-11 h-11 text-gray-800">
+              <svg
+                version="1.0"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 1280.000000 1268.000000"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                <metadata>
+                  Created by potrace 1.15, written by Peter Selinger 2001-2017
+                </metadata>
+                <g
+                  transform="translate(0.000000,1268.000000) scale(0.100000,-0.100000)"
+                  fill="currentColor"
+                  stroke="none"
+                >
+                  <path
+                    d="M3650 11419 c-192 -24 -353 -105 -492 -246 -91 -92 -99 -107 -323
+-553 -214 -426 -331 -674 -505 -1070 -37 -85 -113 -247 -167 -360 -55 -113
+-126 -263 -158 -335 -32 -71 -78 -173 -102 -225 -158 -333 -203 -441 -252
+-600 -76 -246 -132 -498 -175 -790 -104 -690 -113 -1191 -35 -1810 33 -268
+151 -850 213 -1059 13 -42 46 -152 74 -246 87 -292 158 -468 317 -786 361
+-721 857 -1338 1398 -1737 350 -259 505 -358 702 -453 511 -244 1058 -409
+1495 -449 748 -68 1219 -81 1510 -40 591 84 932 192 1540 488 124 60 268 138
+320 174 334 226 664 489 847 675 121 123 393 451 522 630 208 288 445 709 541
+963 26 69 67 172 90 230 120 298 215 596 270 845 17 77 42 185 56 240 52 205
+119 621 150 930 17 181 15 555 -5 885 -27 434 -128 824 -414 1610 -41 113 -93
+266 -117 340 -76 243 -286 783 -440 1131 -174 395 -454 882 -590 1030 -119
+129 -136 144 -378 334 -257 200 -570 249 -847 133 -94 -40 -222 -124 -280
+-184 -62 -63 -132 -171 -156 -239 -55 -156 -73 -400 -49 -675 9 -106 14 -123
+55 -209 57 -118 244 -449 396 -701 134 -223 276 -474 342 -606 114 -228 213
+-499 257 -705 16 -75 52 -215 80 -311 57 -200 110 -423 136 -583 26 -153 26
+-765 1 -955 -31 -238 -66 -455 -90 -565 -39 -178 -183 -657 -249 -830 -113
+-297 -289 -620 -452 -830 -176 -226 -447 -481 -677 -638 -313 -213 -571 -338
+-914 -441 -412 -124 -645 -142 -969 -75 -299 62 -876 323 -1140 516 -246 180
+-392 312 -591 538 -271 307 -421 564 -582 995 -74 197 -91 252 -168 570 -99
+402 -122 538 -161 935 -28 295 -28 411 1 715 42 430 64 520 261 1098 89 259
+120 336 218 535 117 238 159 312 325 572 99 154 130 215 161 320 61 199 71
+252 86 439 8 105 19 229 24 276 6 47 15 130 21 185 21 184 1 370 -53 498 -56
+134 -202 296 -328 364 -159 87 -385 133 -550 112z m-1080 -5156 c0 -21 5 -121
+10 -223 5 -101 6 -188 2 -192 -4 -3 -80 -10 -169 -14 l-162 -7 -5 24 c-3 13
+-7 116 -8 229 l-3 205 90 6 c50 3 125 6 168 7 l77 2 0 -37z m8028 -189 c22 -6
+22 -9 21 -143 -1 -75 -4 -176 -8 -226 l-6 -90 -46 -9 c-31 -6 -88 -4 -170 5
+l-124 14 1 55 c2 77 33 380 39 391 7 10 256 12 293 3z m-7696 -1838 c24 -23
+180 -374 176 -396 -2 -15 -37 -36 -142 -85 -77 -36 -147 -65 -157 -65 -10 0
+-25 12 -33 28 -32 62 -156 372 -156 390 0 14 25 30 98 65 98 47 167 75 189 76
+6 1 18 -5 25 -13z m7149 -256 c77 -39 142 -76 145 -84 8 -20 -161 -386 -185
+-401 -17 -10 -262 116 -311 160 -28 25 -25 42 15 103 20 28 40 63 45 77 15 41
+134 215 147 215 2 0 66 -32 144 -70z m-5786 -1522 c132 -92 191 -139 193 -154
+2 -14 -24 -58 -73 -125 -96 -130 -110 -142 -138 -127 -62 32 -377 262 -374
+272 8 21 188 266 196 266 4 0 92 -60 196 -132z m4402 -10 c33 -37 163 -236
+163 -250 0 -14 -12 -23 -175 -125 -140 -89 -199 -123 -211 -123 -13 0 -194
+265 -194 283 0 13 63 54 330 214 46 28 62 28 87 1z"
+                  />
+                </g>
+              </svg>
+            </span>
+            <span
+              class="font-bold"
+              style="font-family: 'Cormorant Garamond', serif"
+              >САДКИ</span
+            >
+          </a>
+          <div
+            class="mt-1 text-center text-md font-light md:text-lg lg:text-lg text-slate-600/80"
+          >
+            отдых в центре неповторимой природы
+          </div>
+        </div>
+        <!-- Вариант 2: Компактный (при скролле) -->
+        <div class="header__compact hidden items-center justify-center w-full">
+          <div class="flex items-center gap-4">
+            <!-- Max -->
+            <a
+              href="#"
+              aria-label="Max"
+              class="w-7 h-7 flex items-center justify-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 174.03 174.00"
+                data-guides='{"vertical":[],"horizontal":[]}'
+              >
+                <defs />
+                <mask
+                  id="tSvge0fd5823d4"
+                  x="-4452.486328125"
+                  y="-1130.4998779296875"
+                />
+                <path
+                  fill="currentColor"
+                  stroke="none"
+                  fill-opacity="1"
+                  stroke-width="1"
+                  stroke-opacity="1"
+                  id="tSvg6755a1366b"
+                  title="Path 1"
+                  d="M88.4263 152.0725C75.5231 152.0725 69.5267 150.1891 59.1037 142.6556C52.5108 151.1308 31.6333 157.754 30.7228 146.4223C30.7228 137.9157 28.8391 130.7275 26.7043 122.88C24.1613 113.212 21.273 102.4453 21.273 86.8446C21.273 49.585 51.8515 21.554 88.081 21.554C124.3419 21.554 152.7541 50.9662 152.7541 87.1899C152.8758 122.8535 124.0953 151.8822 88.4263 152.0725ZM88.96 53.7599C71.3162 52.8496 57.5653 65.0602 54.52 84.2079C52.0084 100.0597 56.4665 119.3644 60.2653 120.3689C62.0862 120.8083 66.6698 117.1043 69.5267 114.2479C74.2508 117.5108 79.7519 119.4706 85.4752 119.9294C103.7571 120.8086 119.3783 106.8928 120.6059 88.6338C121.3205 70.3363 107.2445 54.8383 88.96 53.7912C88.96 53.7808 88.96 53.7703 88.96 53.7599ZM110.1343 1C110.031 1 109.9278 1 109.8246 1C104.3599 1 98.8951 1 93.4304 1C83.5847 1 73.739 1 63.8933 1C12.0958 1 1.0001 12.1112 1.0001 63.8832C1.0001 79.2944 1.0001 94.7056 1.0001 110.1168C1.0001 161.906 12.113 173 63.8933 173C73.739 173 83.5847 173 93.4304 173C98.8951 173 104.3599 173 109.8246 173C109.9278 173 110.031 173 110.1343 173C161.9317 173 173.0275 161.8888 173.0275 110.1168C173.0275 94.7056 173.0275 79.2944 173.0275 63.8832C173.0275 12.094 161.9145 1 110.1343 1Z"
+                />
+              </svg>
+            </a>
+            <!-- Telegram -->
+            <a
+              href="https://t.me/ваш_ник"
+              target="_blank"
+              aria-label="Telegram"
+              class="w-7 h-7 flex items-center justify-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 191.00 174.00"
+                data-guides='{"vertical":[],"horizontal":[]}'
+              >
+                <defs />
+                <mask
+                  id="tSvge0fd5823d4"
+                  x="-4174.49609375"
+                  y="-1130.5001220703125"
+                />
+                <path
+                  fill="currentColor"
+                  stroke="none"
+                  fill-opacity="1"
+                  stroke-width="1"
+                  stroke-opacity="1"
+                  id="tSvg136bdcc4656"
+                  title="Path 9"
+                  d="M186.4306 3.3645C183.2067 0.6297 178.143 0.2384 172.9073 2.3411C172.9044 2.3411 172.9016 2.3411 172.8987 2.3411C167.3923 4.5513 17.0286 69.0687 10.9074 71.7046C9.7941 72.0916 0.0708 75.7208 1.0723 83.8048C1.9664 91.0934 9.7812 94.112 10.7355 94.4603C23.4779 98.8248 36.2202 103.1893 48.9626 107.5538C51.4988 115.999 60.8481 147.1569 62.9157 153.8133C64.2053 157.9629 66.3073 163.4153 69.9912 164.5376C73.2237 165.7846 76.439 164.6451 78.5195 163.0111C86.3099 155.7827 94.1004 148.5544 101.8908 141.3261C114.4669 151.1373 127.0431 160.9485 139.6193 170.7597C139.9187 170.9389 140.2182 171.118 140.5177 171.2972C143.0796 172.4324 145.5341 173 147.8768 173C149.6865 173 151.4231 172.6603 153.0824 171.9809C158.735 169.6589 160.996 164.271 161.2324 163.6604C170.6262 114.8165 180.02 65.9727 189.4138 17.1289C191.1332 9.3028 188.7432 5.321 186.4306 3.3645ZM82.6762 112.7912C78.3777 124.2579 74.0791 135.7246 69.7805 147.1913C65.482 132.8579 61.1834 118.5246 56.8849 104.1912C89.8405 79.8245 122.7961 55.4577 155.7518 31.091C131.3932 58.3244 107.0347 85.5578 82.6762 112.7912Z"
+                />
+              </svg>
+            </a>
+            <!-- WhatsApp -->
+            <a
+              href="https://wa.me/79131877470"
+              target="_blank"
+              aria-label="WhatsApp"
+              class="w-7 h-7 flex items-center justify-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 174.00 174.00"
+                data-guides='{"vertical":[],"horizontal":[]}'
+              >
+                <defs />
+                <mask id="tSvge0fd5823d4" x="-4510.48681640625" y="-1125" />
+                <path
+                  fill="currentColor"
+                  stroke="none"
+                  fill-opacity="1"
+                  stroke-width="1"
+                  stroke-opacity="1"
+                  id="tSvg6ee963c98c"
+                  title="Path 5"
+                  d="M86.9999 1C39.5804 1 1.0002 39.5804 1.0002 87C1.0002 101.807 4.8253 116.3671 12.0792 129.2148C8.4323 142.227 4.7854 155.2391 1.1385 168.2513C0.7796 169.5338 1.1273 170.9098 2.0546 171.8633C2.7688 172.5999 3.741 173 4.7393 173C5.0384 173 5.3413 172.9626 5.6367 172.8916C19.2172 169.5276 32.7976 166.1636 46.3781 162.7996C58.8182 169.4777 72.8286 173 86.9999 173C134.4194 173 172.9996 134.4197 172.9996 87C172.9996 39.5804 134.4194 1 86.9999 1ZM130.2615 117.3468C128.4218 122.4395 119.5975 127.0872 115.3574 127.7117C111.5509 128.2688 106.735 128.5081 101.4478 126.8479C98.2434 125.8384 94.1304 124.4997 88.862 122.2525C66.7152 112.8075 52.2523 90.7878 51.1455 89.3332C50.0425 87.8787 42.1305 77.5138 42.1305 66.7863C42.1305 56.0587 47.8326 50.7828 49.8592 48.5992C51.8858 46.4155 54.2751 45.8696 55.7484 45.8696C57.2216 45.8696 58.691 45.8883 59.981 45.9481C61.3383 46.0154 63.1593 45.4359 64.9503 49.691C66.79 54.0583 71.2059 64.7858 71.7518 65.8814C72.3052 66.9732 72.6716 68.2483 71.9387 69.7028C71.2059 71.1573 70.8394 72.0659 69.7327 73.341C68.6259 74.616 67.4144 76.1827 66.4198 77.1624C65.313 78.2505 64.1651 79.4283 65.4514 81.6119C66.7376 83.7956 71.1685 90.9336 77.7344 96.7143C86.1661 104.1402 93.2816 106.4435 95.4877 107.5353C97.6938 108.6271 98.9838 108.4439 100.27 106.9894C101.5563 105.5311 105.789 100.6217 107.2584 98.4418C108.7279 96.2618 110.2011 96.6208 112.2277 97.3499C114.2543 98.0753 125.109 103.3475 127.3151 104.4393C129.5211 105.5311 130.9944 106.0771 131.5477 106.9857C132.1011 107.8905 132.1011 112.2578 130.2615 117.3468Z"
+                />
+              </svg>
+            </a>
+          </div>
+          <a
+            href="tel:+79131877470"
+            class="font-bold text-base sm:text-lg text-gray-800 ml-10"
+            >+7 913 187‑74‑70</a
+          >
+        </div>
       </div>
     </header>
 
     <!-- Герой с видео -->
-  <section class="relative">
-  <div class="relative h-[65vh] sm:h-[72vh] lg:h-[92vh] xl:h-screen overflow-hidden hero">
-  <!-- Постер (под видео) -->
-  <img class="hero-poster absolute inset-0 w-full h-full object-cover z-0" src="/media/preview.jpg" alt="" aria-hidden="true" />
-  <!-- Видео (одно для всех устройств) -->
-  <video class="hero-video absolute inset-0 w-full h-full object-cover z-10" muted loop playsinline webkit-playsinline preload="auto" poster="/media/preview.jpg">
-          <source src="/media/preview.mp4" type="video/mp4" />
+    <section class="relative mt-header">
+      <div
+        class="relative h-[65vh] sm:h-[72vh] lg:h-[92vh] xl:h-screen overflow-hidden hero"
+      >
+        <!-- Мобильный постер и видео -->
+        <img
+          class="hero-poster absolute inset-0 w-full h-full object-cover z-0 block sm:hidden"
+          src="/media/preview_mobile.jpg"
+          alt=""
+          aria-hidden="true"
+        />
+        <video
+          class="hero-video absolute inset-0 w-full h-full object-cover z-10 sm:hidden"
+          muted
+          loop
+          playsinline
+          webkit-playsinline
+          preload="auto"
+          poster="/media/preview_mobile.jpg"
+        >
+          <source src="/media/preview_mobile.mp4" type="video/mp4" />
           Ваш браузер не поддерживает воспроизведение видео.
         </video>
-        <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-white/0"></div>
-  <div class="relative z-10 h-full flex items-end sm:items-center lg:items-end pb-6 sm:pb-0 lg:pb-0">
+        <!-- Десктоп/планшет постер и видео -->
+        <img
+          class="hero-poster absolute inset-0 w-full h-full object-cover z-0 hidden sm:block"
+          src="/media/preview-desktope.jpg"
+          alt=""
+          aria-hidden="true"
+        />
+        <video
+          class="hero-video absolute inset-0 w-full h-full object-cover z-10 hidden sm:block"
+          muted
+          loop
+          playsinline
+          webkit-playsinline
+          preload="auto"
+          poster="/media/preview-desktope.jpg"
+        >
+          <source src="/media/preview_desktop.mp4" type="video/mp4" />
+          Ваш браузер не поддерживает воспроизведение видео.
+        </video>
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-white/0"
+        ></div>
+        <div
+          class="relative z-10 h-full flex items-end sm:items-center lg:items-end pb-6 sm:pb-0 lg:pb-0"
+        >
           <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
-            <div class="max-w-sm sm:max-w-lg lg:max-w-lg bg-white/40 backdrop-blur-soft sm:bg-white/80 sm:backdrop-blur-soft rounded-lg p-3 sm:p-5 shadow-none sm:shadow-soft lg:mb-20 xl:mb-24 lg:ml-0 xl:ml-0 2xl:-ml-10">
-              <h1 class="text-xl sm:text-3xl lg:text-4xl font-bold text-slate-900">База отдыха «Подкова»</h1>
-              <p class="hidden sm:block mt-2 sm:mt-4 text-slate-900">Хутор Садки, Приморско-Ахтарский район. Рыбалка, природа и уютный отдых у воды.</p>
-              <div class="mt-3 sm:mt-5 flex flex-wrap gap-2 sm:gap-2">
-                <a href="#about" class="inline-flex items-center rounded-md bg-emerald-600 px-4 py-2 sm:px-5 sm:py-2.5 text-sm sm:text-base text-white font-medium hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">Подробнее</a>
-                <a href="#contacts" class="inline-flex items-center rounded-md border border-slate-300 px-4 py-2 sm:px-5 sm:py-2.5 text-sm sm:text-base text-slate-700 font-medium bg-white/90 sm:bg-transparent shadow-sm sm:shadow-none hover:bg-white sm:hover:bg-slate-50">Связаться</a>
+            <div
+              class="max-w-sm sm:max-w-lg lg:max-w-lg xl:max-w-md bg-white/40 backdrop-blur-soft sm:bg-white/80 sm:backdrop-blur-soft rounded-lg p-3 sm:p-5 shadow-none sm:shadow-soft lg:mb-20 xl:mb-24 lg:ml-0 xl:ml-0 2xl:-ml-10"
+            >
+              <div
+                class="hidden sm:block mb-2 text-start text-2xl font-semibold text-slate-800"
+              >
+                Забронировать отдых
+              </div>
+              <!-- Соцсети и телефон под логотипом -->
+              <div class="flex items-center gap-4">
+                <!-- Max -->
+                <a
+                  href="#"
+                  aria-label="Max"
+                  class="w-8 h-8 flex items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 174.03 174.00"
+                    data-guides='{"vertical":[],"horizontal":[]}'
+                  >
+                    <defs />
+                    <mask
+                      id="tSvge0fd5823d4"
+                      x="-4452.486328125"
+                      y="-1130.4998779296875"
+                    />
+                    <path
+                      fill="currentColor"
+                      stroke="none"
+                      fill-opacity="1"
+                      stroke-width="1"
+                      stroke-opacity="1"
+                      id="tSvg6755a1366b"
+                      title="Path 1"
+                      d="M88.4263 152.0725C75.5231 152.0725 69.5267 150.1891 59.1037 142.6556C52.5108 151.1308 31.6333 157.754 30.7228 146.4223C30.7228 137.9157 28.8391 130.7275 26.7043 122.88C24.1613 113.212 21.273 102.4453 21.273 86.8446C21.273 49.585 51.8515 21.554 88.081 21.554C124.3419 21.554 152.7541 50.9662 152.7541 87.1899C152.8758 122.8535 124.0953 151.8822 88.4263 152.0725ZM88.96 53.7599C71.3162 52.8496 57.5653 65.0602 54.52 84.2079C52.0084 100.0597 56.4665 119.3644 60.2653 120.3689C62.0862 120.8083 66.6698 117.1043 69.5267 114.2479C74.2508 117.5108 79.7519 119.4706 85.4752 119.9294C103.7571 120.8086 119.3783 106.8928 120.6059 88.6338C121.3205 70.3363 107.2445 54.8383 88.96 53.7912C88.96 53.7808 88.96 53.7703 88.96 53.7599ZM110.1343 1C110.031 1 109.9278 1 109.8246 1C104.3599 1 98.8951 1 93.4304 1C83.5847 1 73.739 1 63.8933 1C12.0958 1 1.0001 12.1112 1.0001 63.8832C1.0001 79.2944 1.0001 94.7056 1.0001 110.1168C1.0001 161.906 12.113 173 63.8933 173C73.739 173 83.5847 173 93.4304 173C98.8951 173 104.3599 173 109.8246 173C109.9278 173 110.031 173 110.1343 173C161.9317 173 173.0275 161.8888 173.0275 110.1168C173.0275 94.7056 173.0275 79.2944 173.0275 63.8832C173.0275 12.094 161.9145 1 110.1343 1Z"
+                    />
+                  </svg>
+                </a>
+                <!-- Telegram -->
+                <a
+                  href="https://t.me/ваш_ник"
+                  target="_blank"
+                  aria-label="Telegram"
+                  class="w-8 h-8 flex items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 191.00 174.00"
+                    data-guides='{"vertical":[],"horizontal":[]}'
+                  >
+                    <defs />
+                    <mask
+                      id="tSvge0fd5823d4"
+                      x="-4174.49609375"
+                      y="-1130.5001220703125"
+                    />
+                    <path
+                      fill="currentColor"
+                      stroke="none"
+                      fill-opacity="1"
+                      stroke-width="1"
+                      stroke-opacity="1"
+                      id="tSvg136bdcc4656"
+                      title="Path 9"
+                      d="M186.4306 3.3645C183.2067 0.6297 178.143 0.2384 172.9073 2.3411C172.9044 2.3411 172.9016 2.3411 172.8987 2.3411C167.3923 4.5513 17.0286 69.0687 10.9074 71.7046C9.7941 72.0916 0.0708 75.7208 1.0723 83.8048C1.9664 91.0934 9.7812 94.112 10.7355 94.4603C23.4779 98.8248 36.2202 103.1893 48.9626 107.5538C51.4988 115.999 60.8481 147.1569 62.9157 153.8133C64.2053 157.9629 66.3073 163.4153 69.9912 164.5376C73.2237 165.7846 76.439 164.6451 78.5195 163.0111C86.3099 155.7827 94.1004 148.5544 101.8908 141.3261C114.4669 151.1373 127.0431 160.9485 139.6193 170.7597C139.9187 170.9389 140.2182 171.118 140.5177 171.2972C143.0796 172.4324 145.5341 173 147.8768 173C149.6865 173 151.4231 172.6603 153.0824 171.9809C158.735 169.6589 160.996 164.271 161.2324 163.6604C170.6262 114.8165 180.02 65.9727 189.4138 17.1289C191.1332 9.3028 188.7432 5.321 186.4306 3.3645ZM82.6762 112.7912C78.3777 124.2579 74.0791 135.7246 69.7805 147.1913C65.482 132.8579 61.1834 118.5246 56.8849 104.1912C89.8405 79.8245 122.7961 55.4577 155.7518 31.091C131.3932 58.3244 107.0347 85.5578 82.6762 112.7912Z"
+                    />
+                  </svg>
+                </a>
+                <!-- WhatsApp -->
+                <a
+                  href="https://wa.me/79131877470"
+                  target="_blank"
+                  aria-label="WhatsApp"
+                  class="w-8 h-8 flex items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 174.00 174.00"
+                    data-guides='{"vertical":[],"horizontal":[]}'
+                  >
+                    <defs />
+                    <mask id="tSvge0fd5823d4" x="-4510.48681640625" y="-1125" />
+                    <path
+                      fill="currentColor"
+                      stroke="none"
+                      fill-opacity="1"
+                      stroke-width="1"
+                      stroke-opacity="1"
+                      id="tSvg6ee963c98c"
+                      title="Path 5"
+                      d="M86.9999 1C39.5804 1 1.0002 39.5804 1.0002 87C1.0002 101.807 4.8253 116.3671 12.0792 129.2148C8.4323 142.227 4.7854 155.2391 1.1385 168.2513C0.7796 169.5338 1.1273 170.9098 2.0546 171.8633C2.7688 172.5999 3.741 173 4.7393 173C5.0384 173 5.3413 172.9626 5.6367 172.8916C19.2172 169.5276 32.7976 166.1636 46.3781 162.7996C58.8182 169.4777 72.8286 173 86.9999 173C134.4194 173 172.9996 134.4197 172.9996 87C172.9996 39.5804 134.4194 1 86.9999 1ZM130.2615 117.3468C128.4218 122.4395 119.5975 127.0872 115.3574 127.7117C111.5509 128.2688 106.735 128.5081 101.4478 126.8479C98.2434 125.8384 94.1304 124.4997 88.862 122.2525C66.7152 112.8075 52.2523 90.7878 51.1455 89.3332C50.0425 87.8787 42.1305 77.5138 42.1305 66.7863C42.1305 56.0587 47.8326 50.7828 49.8592 48.5992C51.8858 46.4155 54.2751 45.8696 55.7484 45.8696C57.2216 45.8696 58.691 45.8883 59.981 45.9481C61.3383 46.0154 63.1593 45.4359 64.9503 49.691C66.79 54.0583 71.2059 64.7858 71.7518 65.8814C72.3052 66.9732 72.6716 68.2483 71.9387 69.7028C71.2059 71.1573 70.8394 72.0659 69.7327 73.341C68.6259 74.616 67.4144 76.1827 66.4198 77.1624C65.313 78.2505 64.1651 79.4283 65.4514 81.6119C66.7376 83.7956 71.1685 90.9336 77.7344 96.7143C86.1661 104.1402 93.2816 106.4435 95.4877 107.5353C97.6938 108.6271 98.9838 108.4439 100.27 106.9894C101.5563 105.5311 105.789 100.6217 107.2584 98.4418C108.7279 96.2618 110.2011 96.6208 112.2277 97.3499C114.2543 98.0753 125.109 103.3475 127.3151 104.4393C129.5211 105.5311 130.9944 106.0771 131.5477 106.9857C132.1011 107.8905 132.1011 112.2578 130.2615 117.3468Z"
+                    />
+                  </svg>
+                </a>
+                <!-- Телефон -->
+                <a
+                  href="tel:+79131877470"
+                  class="font-bold text-xl text-gray-800 ml-5"
+                  >+7 913 187‑74‑70</a
+                >
               </div>
             </div>
           </div>
@@ -75,144 +355,310 @@
       </div>
     </section>
 
-    <!-- О базе -->
-  <section id="about" class="py-16 sm:py-20 scroll-mt-24 bg-slate-50/40">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="rounded-2xl bg-white shadow-soft p-6 sm:p-10">
-        <div class="grid lg:grid-cols-2 gap-10 items-center">
-          <div>
-            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Отдых у воды в светлых тонах</h2>
-            <p class="mt-4 text-slate-700">«Подкова» — небольшая база отдыха с прямым выходом к каналу, который соединяется с лиманом Карлык. Здесь комфортно семьям, рыбакам и тем, кто ценит тишину и природу.</p>
-            <ul class="mt-6 grid sm:grid-cols-2 gap-4 text-slate-700">
-              <li class="flex items-start gap-3"><span class="mt-1 inline-block h-2 w-2 rounded-full bg-emerald-500"></span>Домики и уютные номера</li>
-              <li class="flex items-start gap-3"><span class="mt-1 inline-block h-2 w-2 rounded-full bg-emerald-500"></span>Мангальные зоны</li>
-              <li class="flex items-start gap-3"><span class="mt-1 inline-block h-2 w-2 rounded-full bg-emerald-500"></span>Причал и рыбалка</li>
-              <li class="flex items-start gap-3"><span class="mt-1 inline-block h-2 w-2 rounded-full bg-emerald-500"></span>Парковка на территории</li>
-            </ul>
-          </div>
-          <div class="aspect-video rounded-xl bg-slate-100 shadow-soft grid place-items-center text-slate-400">
-            Галерея / Фото (скоро)
-          </div>
-  </div>
-  </div>
-      </div>
-    </section>
+    <!-- Описание базы отдыха -->
+    <section id="about" class="py-10 scroll-mt-24">
+      <div class="mx-auto max-w-7xl px-1 sm:px-6 lg:px-8">
+        <div class="rounded-2xl p-6 sm:p-10">
+          <h1
+            class="text-lg sm:text-lg font-bold text-slate-900 text-center relative inline-block"
+          >
+            О НАШЕЙ БАЗЕ ОТДЫХА
 
-    <!-- Размещение -->
-  <section id="accomodation" class="py-16 bg-slate-50 scroll-mt-24">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="rounded-2xl bg-white shadow-soft p-6 sm:p-10">
-        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Размещение</h2>
-        <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <article class="rounded-xl bg-white p-6 shadow-soft border border-slate-200">
-            <h3 class="font-semibold text-slate-900">Стандарт</h3>
-            <p class="mt-2 text-sm text-slate-600">2–3 человека, всё необходимое для короткого отдыха.</p>
-          </article>
-          <article class="rounded-xl bg-white p-6 shadow-soft border border-slate-200">
-            <h3 class="font-semibold text-slate-900">Семейный</h3>
-            <p class="mt-2 text-sm text-slate-600">До 4–5 гостей, больше пространства и удобств.</p>
-          </article>
-          <article class="rounded-xl bg-white p-6 shadow-soft border border-slate-200">
-            <h3 class="font-semibold text-slate-900">Домик у воды</h3>
-            <p class="mt-2 text-sm text-slate-600">Максимальная близость к каналу, красивая панорама.</p>
-          </article>
-  </div>
-  </div>
-      </div>
-    </section>
+            <span class="block w-full mt-1 text-grey-700">
+              <svg
+                height="8"
+                width="227"
+                viewBox="0 0 227 8"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 5 Q 9.5 0, 19 5 T 38 5 T 57 5 T 76 5 T 95 5 T 114 5 T 133 5 T 152 5 T 171 5 T 190 5 T 209 5 T 227 5"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  fill="none"
+                />
+              </svg>
+            </span>
+          </h1>
+          <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <article class="rounded-xl flex flex-col h-full">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-waves-icon lucide-waves"
+              >
+                <path
+                  d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"
+                />
+                <path
+                  d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"
+                />
+                <path
+                  d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"
+                />
+              </svg>
+              <h2 class="mt-2 font-semibold text-xl text-slate-900">
+                ОЧАРОВАТЕЛЬНЫЕ ПЕЙЗАЖИ
+              </h2>
+              <p class="mt-2 text-md text-slate-600">
+                База отдыха «Подкова» расположена в живописном месте у канала,
+                который соединяется с сетью лиманов. Здесь вы сможете
+                насладиться красотой природы, тишиной и свежим воздухом
+              </p>
+            </article>
+            <article class="rounded-xl flex flex-col h-full">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-fish-icon lucide-fish"
+              >
+                <path
+                  d="M6.5 12c.94-3.46 4.94-6 8.5-6 3.56 0 6.06 2.54 7 6-.94 3.47-3.44 6-7 6s-7.56-2.53-8.5-6Z"
+                />
+                <path d="M18 12v.5" />
+                <path d="M16 17.93a9.77 9.77 0 0 1 0-11.86" />
+                <path
+                  d="M7 10.67C7 8 5.58 5.97 2.73 5.5c-1 1.5-1 5 .23 6.5-1.24 1.5-1.24 5-.23 6.5C5.58 18.03 7 16 7 13.33"
+                />
+                <path
+                  d="M10.46 7.26C10.2 5.88 9.17 4.24 8 3h5.8a2 2 0 0 1 1.98 1.67l.23 1.4"
+                />
+                <path
+                  d="m16.01 17.93-.23 1.4A2 2 0 0 1 13.8 21H9.5a5.96 5.96 0 0 0 1.49-3.98"
+                />
+              </svg>
+              <h2 class="mt-2 font-semibold text-xl text-slate-900">РЫБАЛКА</h2>
+              <p class="mt-2 text-md text-slate-600">
+                Наслаждайтесь отличной рыбалкой прямо на территории базы — канал
+                и сеть чистых лиманов богаты рыбой. Здесь каждый найдёт своё
+                место для тихого и увлекательного отдыха с удочкой, а улов
+                станет приятным бонусом к вашему пребыванию
+              </p>
+            </article>
+            <article class="rounded-xl flex flex-col h-full">
+              <svg
+                fill="none"
+                height="46"
+                stroke-width="1.4"
+                viewBox="0 0 24 24"
+                width="46"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.5 14.5L5 22"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 6C8 6 9 4.9387 9 4C9 2.66667 8 2 8 2"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 6C12 6 13 4.9387 13 4C13 2.66667 12 2 12 2"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M16 6C16 6 17 4.9387 17 4C17 2.66667 16 2 16 2"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M16.5 17.5L7.5 17.5"
+                  stroke="currentColыor"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M15.5 14.5L17.6 19"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M18.5 22C19.3284 22 20 21.3284 20 20.5C20 19.6716 19.3284 19 18.5 19C17.6716 19 17 19.6716 17 20.5C17 21.3284 17.6716 22 18.5 22Z"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 15C15.664 15 18.6705 12.185 18.9747 8.59974C19.0027 8.26956 18.7314 8 18.4 8H5.6C5.26863 8 4.99732 8.26956 5.02533 8.59974C5.32955 12.185 8.33603 15 12 15Z"
+                  stroke="currentColor"
+                />
+              </svg>
+              <h2 class="mt-2 font-semibold text-xl text-slate-900">
+                МАНГАЛЬНАЯ ЗОНА
+              </h2>
+              <p class="mt-2 text-md text-slate-600">
+                К вашему распоряжению — оборудованный мангал, просторный
+                обеденный стол и удобные стулья для вашего отдыха
+              </p>
+            </article>
 
-    <!-- Активности -->
-  <section id="activities" class="py-16 scroll-mt-24 bg-slate-50/40">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="rounded-2xl bg-white shadow-soft p-6 sm:p-10">
-        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Что можно сделать</h2>
-        <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="rounded-xl bg-white p-6 shadow-soft border border-slate-200">
-            <p class="font-medium text-slate-900">Рыбалка</p>
-            <p class="mt-1 text-sm text-slate-600">Канал и лиман Карлык поблизости.</p>
+            <article class="rounded-xl flex flex-col h-full">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="42"
+                height="42"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-fence-icon lucide-fence"
+              >
+                <path d="M4 3 2 5v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5Z" />
+                <path d="M6 8h4" />
+                <path d="M6 18h4" />
+                <path d="m12 3-2 2v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5Z" />
+                <path d="M14 8h4" />
+                <path d="M14 18h4" />
+                <path d="m20 3-2 2v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5Z" />
+              </svg>
+              <h2 class="mt-2 font-semibold text-xl text-slate-900">
+                СПОКОЙСТВИЕ И УДОБСТВО
+              </h2>
+              <p class="mt-2 text-md text-slate-600">
+                Вас ждёт закрытая территория с забором и бесплатная парковка для
+                автомобилей
+              </p>
+            </article>
           </div>
-          <div class="rounded-xl bg-white p-6 shadow-soft border border-slate-200">
-            <p class="font-medium text-slate-900">Прогулки и природа</p>
-            <p class="mt-1 text-sm text-slate-600">Тихая территория, свежий воздух.</p>
-          </div>
-          <div class="rounded-xl bg-white p-6 shadow-soft border border-slate-200">
-            <p class="font-medium text-slate-900">Мангал</p>
-            <p class="mt-1 text-sm text-slate-600">Зоны барбекю для компаний.</p>
-          </div>
-  </div>
-  </div>
-      </div>
-    </section>
-
-    <!-- Локация / карта-заглушка -->
-  <section id="location" class="py-16 bg-slate-50 scroll-mt-24">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="rounded-2xl bg-white shadow-soft p-6 sm:p-10">
-          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Где мы находимся</h2>
-          <p class="mt-2 text-slate-700">Краснодарский край, Приморско-Ахтарский район, хутор Садки.</p>
         </div>
-    <div class="mt-8 -mx-4 sm:mx-0 rounded-none sm:rounded-2xl overflow-hidden shadow-soft border border-slate-200">
-          <div class="h-64 sm:h-80 lg:h-96 w-full">
-            <iframe class="w-full h-full" src="https://yandex.ru/map-widget/v1/?text=%D1%85%D1%83%D1%82%D0%BE%D1%80%20%D0%A1%D0%B0%D0%B4%D0%BA%D0%B8%20%D0%9F%D1%80%D0%B8%D0%BC%D0%BE%D1%80%D1%81%D0%BA%D0%BE-%D0%90%D1%85%D1%82%D0%B0%D1%80%D1%81%D0%BA%D0%B8%D0%B9%20%D1%80-%D0%BD%2C%20%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%B4%D0%B0%D1%80%D1%81%D0%BA%D0%B8%D0%B9%20%D0%BA%D1%80%D0%B0%D0%B9" frameborder="0" allowfullscreen="true" title="Яндекс карта — хутор Садки" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-        </div>
-        <p class="mt-3 text-sm text-slate-500">Если виджет не загрузился, <a class="text-emerald-700 hover:underline" target="_blank" rel="noopener" href="https://yandex.ru/maps/?text=%D1%85%D1%83%D1%82%D0%BE%D1%80%20%D0%A1%D0%B0%D0%B4%D0%BA%D0%B8%20%D0%9F%D1%80%D0%B8%D0%BC%D0%BE%D1%80%D1%81%D0%BA%D0%BE-%D0%90%D1%85%D1%82%D0%B0%D1%80%D1%81%D0%BA%D0%B8%D0%B9%20%D1%80-%D0%BD%2C%20%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%B4%D0%B0%D1%80%D1%81%D0%BA%D0%B8%D0%B9%20%D0%BA%D1%80%D0%B0%D0%B9">откройте карту на сайте Яндекс</a>.</p>
       </div>
     </section>
 
-    <!-- Контакты -->
-  <section id="contacts" class="py-16 scroll-mt-24 bg-slate-50/40">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="rounded-2xl bg-white shadow-soft p-6 sm:p-10">
-        <div class="grid md:grid-cols-2 gap-8">
-          <div>
-            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Связаться и бронирование</h2>
-            <p class="mt-2 text-slate-700">Напишите нам в мессенджеры или позвоните — ответим на вопросы и поможем с датами.</p>
-            <div class="mt-6 flex flex-col gap-3 text-slate-800">
-              <a href="tel:+7" class="hover:text-emerald-700">Тел.: +7 ___ ___‑__‑__</a>
-              <a href="mailto:info@example.com" class="hover:text-emerald-700">E‑mail: info@example.com</a>
+    <!-- Видеоролик о нашей базе -->
+    <section id="video" class="py-10 scroll-mt-24">
+      <div class="mx-auto max-w-7xl px-1 sm:px-6 lg:px-8">
+        <div class="rounded-2xl p-6 sm:p-10">
+          <h1
+            class="text-lg sm:text-lg font-bold text-slate-900 text-center relative inline-block"
+          >
+            ВИДЕО
+
+            <span class="block w-full mt-1 text-grey-700">
+              <svg
+                height="8"
+                width="227"
+                viewBox="0 0 227 8"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 5 Q 9.5 0, 19 5 T 38 5 T 57 5 T 76 5 T 95 5 T 114 5 T 133 5 T 152 5 T 171 5 T 190 5 T 209 5 T 227 5"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  fill="none"
+                />
+              </svg>
+            </span>
+          </h1>
+
+          <div class="mt-8">
+            <div
+              class="mx-auto max-w-xl sm:max-w-2xl md:max-w-3xl rounded-xl overflow-hidden shadow-soft bg-white"
+            >
+              <div class="w-full relative" style="aspect-ratio: 16 / 9" data-video-container>
+                <video
+                  class="w-full h-full block object-cover bg-black"
+                  controls
+                  playsinline
+                  preload="metadata"
+                  poster="/media/video.jpg"
+                >
+                  <source src="/media/video.mp4" type="video/mp4" />
+                  Ваш браузер не поддерживает воспроизведение видео.
+                  <a href="/media/video.mp4">Скачать файл</a>
+                </video>
+                <!-- Overlay Play Button -->
+                <button
+                  type="button"
+                  class="absolute inset-0 z-20 flex items-center justify-center focus:outline-none"
+                  aria-label="Воспроизвести видео"
+                  data-video-overlay
+                >
+                  <span
+                    class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/85 text-emerald-700 shadow-lg ring-1 ring-black/10 backdrop-blur-sm grid place-items-center transition transform hover:scale-105 hover:bg-white"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      class="w-8 h-8 sm:w-10 sm:h-10 -mr-0.5"
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
-          <form id="contactForm" class="rounded-xl bg-white p-6 shadow-soft border border-slate-200 space-y-4">
-            <div>
-              <label class="block text-sm font-medium text-slate-700">Имя</label>
-              <input id="cf-name" name="name" type="text" class="mt-1 w-full rounded-md border border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="Ваше имя" />
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-slate-700">Телефон</label>
-              <input id="cf-phone" name="phone" type="tel" class="mt-1 w-full rounded-md border border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="+7 ___ ___‑__‑__" />
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-slate-700">Сообщение</label>
-              <textarea id="cf-message" name="message" rows="4" class="mt-1 w-full rounded-md border border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="Когда хотите приехать?"></textarea>
-            </div>
-            <div class="flex items-center gap-3">
-              <button id="contactSubmit" type="button" class="inline-flex items-center rounded-md bg-emerald-600 px-4 py-2 text-white font-medium hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">Отправить</button>
-            </div>
-            <p id="contactFeedback" class="text-sm hidden"></p>
-          </form>
-        </div>
         </div>
       </div>
     </section>
 
     <footer class="border-t border-slate-200 py-8">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-600">
+      <div
+        class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-600"
+      >
         <p>© <span id="year"></span> Подкова, хутор Садки</p>
         <div class="flex items-center gap-2">
           <span class="text-slate-400">•</span>
-          <p>Разработка: <a href="https://github.com/ninjamax1917" target="_blank" rel="noopener" class="text-slate-700 hover:text-emerald-700">@ninjamax1917</a></p>
+          <p>
+            Разработка:
+            <a
+              href="https://github.com/ninjamax1917"
+              target="_blank"
+              rel="noopener"
+              class="text-slate-700 hover:text-emerald-700"
+              >@ninjamax1917</a
+            >
+          </p>
         </div>
       </div>
     </footer>
 
     <!-- Кнопка «наверх» -->
-    <button id="backToTop" type="button" aria-label="Наверх"
-      class="fixed bottom-16 right-4 md:right-8 z-50 rounded-full bg-emerald-600/95 text-white p-4 shadow-soft border border-emerald-700/10 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 opacity-0 pointer-events-none transition-opacity duration-300">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6">
-        <path fill-rule="evenodd" d="M11.47 4.72a.75.75 0 0 1 1.06 0l6.25 6.25a.75.75 0 1 1-1.06 1.06L12.75 6.56V20a.75.75 0 0 1-1.5 0V6.56L6.28 12.03a.75.75 0 1 1-1.06-1.06l6.25-6.25Z" clip-rule="evenodd" />
+    <button
+      id="backToTop"
+      type="button"
+      aria-label="Наверх"
+      class="fixed bottom-16 right-4 md:right-8 z-50 rounded-full bg-emerald-600/95 text-white p-4 shadow-soft border border-emerald-700/10 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 opacity-0 pointer-events-none transition-opacity duration-300"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        class="h-6 w-6"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M11.47 4.72a.75.75 0 0 1 1.06 0l6.25 6.25a.75.75 0 1 1-1.06 1.06L12.75 6.56V20a.75.75 0 0 1-1.5 0V6.56L6.28 12.03a.75.75 0 1 1-1.06-1.06l6.25-6.25Z"
+          clip-rule="evenodd"
+        />
       </svg>
     </button>
 
   </body>
-  </html>
+</html>

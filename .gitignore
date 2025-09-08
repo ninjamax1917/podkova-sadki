@@ -22,3 +22,6 @@ node_modules
 *.sw?
 /video
 video
+
+/backup_media
+
