@@ -217,10 +217,74 @@ function initBackToTop() {
   })
 }
 
+// Настройка перенаправлений соц-иконок на номер +79131877470
+function initSocialRedirects() {
+  const PHONE = '79131877470'
+  const PHONE_PLUS = '+79131877470'
+
+  const maxLinks = document.querySelectorAll('a[aria-label="Max"]')
+  const tgLinks = document.querySelectorAll('a[aria-label="Telegram"]')
+  const waLinks = document.querySelectorAll('a[aria-label="WhatsApp"]')
+
+  // MAX: направляем на сайт с номером как параметром (фолбэк)
+  maxLinks.forEach((a) => {
+    const web = `https://max.ru/?phone=${encodeURIComponent(PHONE_PLUS)}`
+    a.setAttribute('href', web)
+    a.setAttribute('rel', 'noopener')
+    a.setAttribute('target', a.getAttribute('target') || '_blank')
+  })
+
+  // Telegram: deeplink в приложение, фолбэк на web
+  tgLinks.forEach((a) => {
+    const app = `tg://resolve?phone=${PHONE}`
+    const web = `https://t.me/+${PHONE}`
+    a.setAttribute('href', web)
+    a.setAttribute('rel', 'noopener')
+    a.setAttribute('target', a.getAttribute('target') || '_blank')
+    a.addEventListener('click', (e) => {
+      try {
+        e.preventDefault()
+        const target = a.getAttribute('target') || '_self'
+        const opener = (url) => { if (target === '_self') location.href = url; else window.open(url, target) }
+        // Пытаемся открыть приложение
+        opener(app)
+        // Фолбэк через 800мс на web-ссылку
+        setTimeout(() => opener(web), 800)
+      } catch {
+        // На всякий случай — web
+        const target = a.getAttribute('target') || '_self'
+        if (target === '_self') location.href = web; else window.open(web, target)
+      }
+    })
+  })
+
+  // WhatsApp: deeplink + web-фолбэк
+  waLinks.forEach((a) => {
+    const app = `whatsapp://send?phone=${PHONE}`
+    const web = `https://wa.me/${PHONE}`
+    a.setAttribute('href', web)
+    a.setAttribute('rel', 'noopener')
+    a.setAttribute('target', a.getAttribute('target') || '_blank')
+    a.addEventListener('click', (e) => {
+      try {
+        e.preventDefault()
+        const target = a.getAttribute('target') || '_self'
+        const opener = (url) => { if (target === '_self') location.href = url; else window.open(url, target) }
+        opener(app)
+        setTimeout(() => opener(web), 800)
+      } catch {
+        const target = a.getAttribute('target') || '_self'
+        if (target === '_self') location.href = web; else window.open(web, target)
+      }
+    })
+  })
+}
+
 export function initSiteUI() {
   initYear()
   initScrollAndFocusRestore()
   ensureTopOnMobileRefresh()
   initSmoothAnchors()
   initBackToTop()
+  initSocialRedirects()
 }
