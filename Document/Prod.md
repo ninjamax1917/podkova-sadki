@@ -57,3 +57,6 @@ scp -r /home/ninja/sites/podkova-sadki/dist ninjamax1917@10.10.0.101:~/sites/pod
 
 Делаем превьюху
 ffmpeg -i /home/ninja/sites/podkova-sadki/public/media/preview.mp4 -vf "select=eq(n\,0)" -q:v 1 /home/ninja/sites/podkova-sadki/public/media/preview-frame.jpg
+
+Делаем фотки
+ffmpeg -i /home/ninja/sites/podkova-sadki/video/video.mp4 -vf "select=eq(n\,0)" -q:v 1 /home/ninja/sites/podkova-sadki/public/media/photo/photo-sadki-1.jpg

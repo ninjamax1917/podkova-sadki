@@ -144,6 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMap()
   initHeroVideoAutoplay()
   initInlineVideoOverlay()
+  initGalleryCarousel()
 })
 
 // Toggle compact header on scroll
@@ -165,3 +166,153 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', onScroll, { passive: true })
   onScroll()
 })()
+
+// Простая карусель для секции "ФОТОГАЛЕРЕЯ"
+function initGalleryCarousel() {
+  const root = document.querySelector('[data-carousel="gallery"]')
+  if (!root) return
+  const track = root.querySelector('[data-carousel-track]')
+  const prev = root.querySelector('[data-carousel-prev]')
+  const next = root.querySelector('[data-carousel-next]')
+  const dotsWrap = root.querySelector('[data-carousel-dots]')
+  if (!track) return
+
+  const slides = Array.from(track.children)
+  // ширина слайда = ширина контейнера (w-full)
+  const getSlideWidth = () => root.getBoundingClientRect().width
+
+  // создаём точки
+  const dots = slides.map((_, i) => {
+    const b = document.createElement('button')
+    b.type = 'button'
+    b.className = 'w-2.5 h-2.5 rounded-full bg-slate-300 aria-[current=true]:bg-emerald-600'
+    b.setAttribute('aria-label', `Показать слайд ${i + 1}`)
+    b.addEventListener('click', () => scrollToIndex(i))
+    dotsWrap?.appendChild(b)
+    return b
+  })
+
+  const indexFromScroll = () => {
+    const w = getSlideWidth()
+    const i = Math.round(track.scrollLeft / (w + 16 /* gap-4 */))
+    return Math.max(0, Math.min(slides.length - 1, i))
+  }
+
+  let current = 0
+  const setActive = (i) => {
+    current = i
+    dots.forEach((d, idx) => d.setAttribute('aria-current', String(idx === i)))
+  }
+
+  const scrollToIndex = (i) => {
+    const w = getSlideWidth()
+    track.scrollTo({ left: i * (w + 16), behavior: 'smooth' })
+    setActive(i)
+  }
+
+  prev?.addEventListener('click', () => scrollToIndex(Math.max(0, current - 1)))
+  next?.addEventListener('click', () => scrollToIndex(Math.min(slides.length - 1, current + 1)))
+
+  // обновление активной точки при прокрутке/свайпе
+  let raf
+  track.addEventListener('scroll', () => {
+    cancelAnimationFrame(raf)
+    raf = requestAnimationFrame(() => setActive(indexFromScroll()))
+  }, { passive: true })
+
+  // resize
+  window.addEventListener('resize', () => setActive(indexFromScroll()))
+
+  // --- Touch drag swipe (pointer events) — только для touch/coarse устройств ---
+  let isDown = false
+  let startX = 0
+  let startScroll = 0
+  let dragged = false
+
+  const onPointerDown = (e) => {
+    // Для мыши — только левая кнопка
+    if (e.pointerType === 'mouse' && e.button !== 0) return
+    isDown = true
+    dragged = false
+    track.setPointerCapture?.(e.pointerId)
+    startX = e.clientX
+    startScroll = track.scrollLeft
+    track.classList.add('is-dragging')
+  }
+
+  const onPointerMove = (e) => {
+    if (!isDown) return
+    const dx = e.clientX - startX
+    if (Math.abs(dx) > 3) dragged = true
+    track.scrollLeft = startScroll - dx
+  }
+
+  const onPointerUp = (e) => {
+    if (!isDown) return
+    isDown = false
+    track.releasePointerCapture?.(e.pointerId)
+    track.classList.remove('is-dragging')
+    // Привязка к ближайшему слайду
+    const i = indexFromScroll()
+    scrollToIndex(i)
+  }
+
+  const addDrag = () => {
+    track.addEventListener('pointerdown', onPointerDown)
+    track.addEventListener('pointermove', onPointerMove, { passive: true })
+    window.addEventListener('pointerup', onPointerUp)
+    window.addEventListener('pointercancel', onPointerUp)
+  }
+  const removeDrag = () => {
+    track.removeEventListener('pointerdown', onPointerDown)
+    track.removeEventListener('pointermove', onPointerMove)
+    window.removeEventListener('pointerup', onPointerUp)
+    window.removeEventListener('pointercancel', onPointerUp)
+  }
+
+  // Блокируем клики во время перетаскивания (актуально только при drag активном)
+  const onTrackClick = (e) => {
+    if (dragged) {
+      e.preventDefault()
+      e.stopPropagation()
+      dragged = false
+    }
+  }
+  const addClickBlock = () => track.addEventListener('click', onTrackClick, true)
+  const removeClickBlock = () => track.removeEventListener('click', onTrackClick, true)
+
+  // --- Horizontal wheel swipe (трекпад/горизонтальное колесо) — только для touch/coarse устройств ---
+  const onWheel = (e) => {
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+      e.preventDefault()
+      track.scrollLeft += e.deltaX
+    }
+  }
+  const addWheel = () => track.addEventListener('wheel', onWheel, { passive: false })
+  const removeWheel = () => track.removeEventListener('wheel', onWheel)
+
+  // Применяем режимы для десктопа/мобилы
+  const mql = window.matchMedia ? window.matchMedia('(pointer: coarse)') : { matches: 'ontouchstart' in window }
+  const applyMode = () => {
+    const isCoarse = !!mql.matches
+    if (isCoarse) {
+      // мобильные/тач: разрешаем свайп и горизонтальную прокрутку
+      removeWheel(); removeDrag(); removeClickBlock()
+      addDrag(); addWheel(); addClickBlock()
+      // обеспечить видимость прокрутки по X
+      track.style.overflowX = 'auto'
+    } else {
+      // десктоп: запрещаем свайп и колесо, скрываем возможность ручной прокрутки
+      removeWheel(); removeDrag(); removeClickBlock()
+      track.style.overflowX = 'hidden'
+      // выровнять к текущему слайду, чтобы не зависнуть между
+      scrollToIndex(indexFromScroll())
+    }
+  }
+  applyMode()
+  if (mql.addEventListener) mql.addEventListener('change', applyMode)
+  else if (mql.addListener) mql.addListener(applyMode)
+
+  // стартовое состояние
+  setActive(0)
+}

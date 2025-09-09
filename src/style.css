@@ -44,3 +44,23 @@ html { scroll-behavior: smooth; scroll-padding-top: var(--header-h, 4rem); }
   #yandexMap { height: 536px; } /* -15% от 630 */
 }
 
+/* Carousel drag UX */
+[data-carousel-track] { overflow-x: auto; }
+[data-carousel-track].is-dragging { user-select: none; }
+[data-carousel-track] img { -webkit-user-drag: none; user-select: none; }
+
+/* Курсор grab только на устройствах с тачем */
+@media (pointer: coarse) {
+  [data-carousel-track] { cursor: grab; }
+  [data-carousel-track].is-dragging { cursor: grabbing; }
+}
+
+/* Utility to hide scrollbars (keeps scrolling functional) */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
